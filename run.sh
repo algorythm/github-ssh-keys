@@ -18,7 +18,7 @@ if ! [ -x "$(command -v virtualenv)" ]; then
 fi
 
 
-if [ -d "venv" ]; then
+if [ -d "$DIR/venv" ]; then
   source $DIR/venv/bin/activate
 else
   virtualenv -p python3 $DIR/venv
