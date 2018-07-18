@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+
 if ! [ -x "$(command -v python3)" ]; then
   echo 'Error: python3 is not installed.' >&2
   exit 1
@@ -17,12 +19,12 @@ fi
 
 
 if [ -d "venv" ]; then
-  source venv/bin/activate
+  source $DIR/venv/bin/activate
 else
-  virtualenv -p python3 venv
-  source venv/bin/activate
-  pip install -r requirements.txt
+  virtualenv -p python3 $DIR/venv
+  source $DIR/venv/bin/activate
+  pip install -r $DIR/requirements.txt
 fi
 
-python github-sshkeys.py "$@"
+python $DIR/github-sshkeys.py "$@"
 deactivate
