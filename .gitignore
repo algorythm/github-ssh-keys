@@ -1,3 +1,5 @@
 .DS_Store
 thumbs.db
 venv
+.vscode
+__pycache__
