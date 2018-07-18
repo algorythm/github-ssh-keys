@@ -3,3 +3,6 @@ thumbs.db
 venv
 .vscode
 __pycache__
+build
+dist
+github-sshkeys.spec

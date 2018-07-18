@@ -5,6 +5,7 @@ import argparse
 import json
 import requests
 import pycheck
+import sys
 
 GITHUB_API = 'https://api.github.com'
 
@@ -84,7 +85,7 @@ def main():
     # Exit if the user have no keys on his GitHub account
     if len(github_keys) == 0:
         git.logger.log("You have no SSH keys saved on GitHub. Please save one and try again.")
-        exit(-1)
+        sys.exit(-1)
 
     # Ensure that ~/.ssh and ~/.ssh/authorized_keys exist
     ensure_authorized_keys_file(git.logger)
@@ -102,10 +103,10 @@ def main():
                 authorized_keys.write(key["key"])
         
         git.logger.log(str(new_keys_count) + " new keys were added to " + str(SSH_AUTHORIZED_KEYS_FILE.resolve()), True)
-    # Otherwise exit
+    # Otherwise sys.exit
     else:
         git.logger.log("No keys were found.")
-        exit(0)
+        sys.exit(0)
 
 if __name__ == '__main__':
     main()
