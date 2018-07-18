@@ -4,6 +4,7 @@ from pathlib import Path
 import argparse
 import json
 import requests
+import pycheck
 
 GITHUB_API = 'https://api.github.com'
 
