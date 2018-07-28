@@ -4,7 +4,7 @@ from pathlib import Path
 import argparse
 import json
 import requests
-from pycheck import is_unsupported_python
+from pycheck import is_supported_python
 import sys
 
 GITHUB_API = 'https://api.github.com'
@@ -23,10 +23,10 @@ def fetch_public_keys(logger, username):
     req = requests.get(url)
 
     if req.status_code == 404:
-        if is_unsupported_python():
-            logger.log("Username %s could not be found" % username)
-        else:
+        if is_supported_python():
             logger.log(f"Username {username} could not be found.")
+        else:
+            logger.log("Username %s could not be found" % username)
         return None
 
     return req.json()
@@ -85,6 +85,10 @@ def main():
 
     # Fetch all SSH keys from GitHub
     github_keys = fetch_public_keys(git.logger, git.username)
+
+    if github_keys == None:
+        git.logger.log("We failed to fetch SSH keys from GitHub.")
+
     # Exit if the user have no keys on his GitHub account
     if len(github_keys) == 0:
         git.logger.log("You have no SSH keys saved on GitHub. Please save one and try again.")

@@ -2,7 +2,7 @@ import sys
 major = sys.version_info.major
 minor = sys.version_info.minor
 
-def is_unsupported_python():
+def is_supported_python():
     return major == 3 and minor >= 6
 
 # if major == 3 and minor >= 6:
