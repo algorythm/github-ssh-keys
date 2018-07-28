@@ -4,7 +4,7 @@ from pathlib import Path
 import argparse
 import json
 import requests
-import pycheck
+from pycheck import is_unsupported_python
 import sys
 
 GITHUB_API = 'https://api.github.com'
@@ -23,7 +23,10 @@ def fetch_public_keys(logger, username):
     req = requests.get(url)
 
     if req.status_code == 404:
-        logger.log("Username '", username, "' could not be found.", sep="")
+        if is_unsupported_python():
+            logger.log("Username %s could not be found" % username)
+        else:
+            logger.log(f"Username {username} could not be found.")
         return None
 
     return req.json()
