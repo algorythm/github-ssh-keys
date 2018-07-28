@@ -1,7 +1,5 @@
 import argparse
-
 import subprocess as sub
-
 from pathlib import Path
 from logger import Logger
 
@@ -19,7 +17,8 @@ class Git:
         gitconfig = Path(Path.home() / ".gitconfig")
 
         if gitconfig.exists():
-            with open(gitconfig) as config_file:
+            # This is a fix for python versions prior to Python 3.6 (str(gitconfig.resolve))
+            with open(str(gitconfig.resolve())) as config_file:
                 for line in config_file:
                     line = line.rstrip().strip()
                     if line.startswith("name"):
