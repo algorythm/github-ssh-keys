@@ -87,6 +87,7 @@ def main():
 
     if github_keys == None:
         git.logger.log("We failed to fetch SSH keys from GitHub.")
+        sys.exit(-1)
 
     # Exit if the user have no keys on his GitHub account
     if len(github_keys) == 0:
