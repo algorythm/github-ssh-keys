@@ -53,7 +53,7 @@ def ensure_authorized_keys_file(logger):
 def get_authorized_keys(logger):
     ensure_authorized_keys_file(logger)
 
-    with open(SSH_AUTHORIZED_KEYS_FILE) as authorized_keys:
+    with open(str(SSH_AUTHORIZED_KEYS_FILE.resolve())) as authorized_keys:
         stored_keys = []
         for authorized_key in authorized_keys:
             if authorized_key.strip() != '':
@@ -102,9 +102,7 @@ def main():
 
     # If there are new keys, save them in ~/.ssh/authorized_keys
     if new_keys_count > 0:
-        git.logger.log("We found " + str(new_keys_count) + " new public keys.")
-
-        with open(SSH_AUTHORIZED_KEYS_FILE, 'w') as authorized_keys:
+        with open(str(SSH_AUTHORIZED_KEYS_FILE.resolve()), 'w') as authorized_keys:
             for key in github_keys:
                 authorized_keys.write(key["key"])
         
