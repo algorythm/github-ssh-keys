@@ -36,15 +36,10 @@ def fetch_public_keys(logger, username):
 ###
 def ensure_authorized_keys_file(logger):
     if not SSH_FOLDER.is_dir():
-        s = str(SSH_FOLDER.resolve()) + " does not exist yet. Creating folder with permission 700."
-        logger.log(s)
-        del s
+        logger.log("\"~/.ssh\" folder does not exist yet. Creating folder with permission 700.")
         SSH_FOLDER.mkdir(mode=0o700)
     if not SSH_AUTHORIZED_KEYS_FILE.is_file():
-        s = str(SSH_AUTHORIZED_KEYS_FILE.resolve()) + " does not exist yet. Creating file with permission 600."
-        # print(SSH_AUTHORIZED_KEYS_FILE.resolve())
-        logger.log(s)
-        del s
+        logger.log("\"~/.ssh/authorized_keys\" does not exist yet. Creating file with permission 600.")
         SSH_AUTHORIZED_KEYS_FILE.touch(mode=0o600)
 
 ###
