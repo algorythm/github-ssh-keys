@@ -23,10 +23,9 @@ def fetch_public_keys(logger, username):
     req = requests.get(url)
 
     if req.status_code == 404:
-        if is_supported_python():
-            logger.log(f"Username {username} could not be found.")
-        else:
-            logger.log("Username %s could not be found" % username)
+        ### Unsupported in Python versions prior to Python 3.6
+        # logger.log(f"Username {username} could not be found.")
+        logger.log("Username %s could not be found" % username)
         return None
 
     return req.json()
