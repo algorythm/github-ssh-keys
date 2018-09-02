@@ -7,13 +7,15 @@ if ! [ -x "$(command -v python3)" ]; then
   exit 1
 fi
 
-if ! [ -x "$(command -v pip)" ]; then
-  echo 'Error: pip is not installed.' >&2
+if ! [ -x "$(command -v pip3)" ]; then
+  echo 'Error: pip3 is not installed.' >&2
+  echo 'Run: sudo apt-get install -y python3-pip' >&2
   exit 1
 fi
 
 if ! [ -x "$(command -v virtualenv)" ]; then
   echo 'Error: virtualenv is not installed.' >&2
+  echo 'Run: sudo pip3 install virtualenv' >&2
   exit 1
 fi
 
