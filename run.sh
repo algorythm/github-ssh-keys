@@ -22,7 +22,7 @@ function install() {
       echo "Error: apt-get does not exist."
       exit 1
     else
-      sudo apt-get install $1
+      sudo apt-get install -y $1
     fi
   else
     exit 1
