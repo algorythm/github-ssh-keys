@@ -18,7 +18,7 @@ function questionY() {
 function install() {
   if questionY "Do you want to install it"
   then
-    if ! [ -x "$(apt-get)" ]; then
+    if ! [ -x "$(command -v apt-get)" ]; then
       echo "Error: apt-get does not exist."
       exit 1
     else
