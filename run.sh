@@ -31,7 +31,7 @@ function install() {
 function pipinstall() {
   if questionY "Do you want to install it"
   then
-    if ! [ -x "$(pip3)" ]; then
+    if ! [ -x "$(command -v pip3)" ]; then
       echo "Error: pip3 does not exist."
       exit 1
     else
